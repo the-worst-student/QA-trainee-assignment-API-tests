@@ -1,0 +1,24 @@
+[tool.black]
+line-length = 88
+target-version = ["py312"]
+extend-exclude = '''
+/(
+    \.idea
+  | \.pytest_cache
+  | __pycache__
+  | venv
+)/
+'''
+
+[tool.ruff]
+line-length = 88
+exclude = [
+  ".idea",
+  ".pytest_cache",
+  "__pycache__",
+  "venv",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = []
