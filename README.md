@@ -55,8 +55,26 @@
 ## Установка зависимостей
 
 ```
+git clone https://github.com/the-worst-student/QA-trainee-assignment-API-tests.git
+cd QA-trainee-assignment-API-tests
 python3 -m venv venv
 source venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
+pytest
+```
+
+Запуск конкретного файла с тестами:
+```
+pytest test_items_positive.py
+pytest test_items_negative.py
+pytest test_items_corner_cases.py
+pytest test_items_nonfunctional.py
+```
+
+Полный прогон с автоисправлением и автоформатированием:
+```
+ruff check . --fix
+black .
+pytest
 ```
