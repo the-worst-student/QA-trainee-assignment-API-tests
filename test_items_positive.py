@@ -3,7 +3,9 @@ from __future__ import annotations
 import time
 
 
-def extract_item_from_response(response_json: dict | list, expected_item_id: str) -> dict:
+def extract_item_from_response(
+    response_json: dict | list, expected_item_id: str
+) -> dict:
     if isinstance(response_json, dict):
         return response_json
 
@@ -12,7 +14,9 @@ def extract_item_from_response(response_json: dict | list, expected_item_id: str
             if Item.get("id") == expected_item_id:
                 return Item
 
-    raise AssertionError(f"Item with id={expected_item_id} was not found in response: {response_json}")
+    raise AssertionError(
+        f"Item with id={expected_item_id} was not found in response: {response_json}"
+    )
 
 
 def extract_statistic_from_response(response_json: dict | list) -> dict:
@@ -22,7 +26,9 @@ def extract_statistic_from_response(response_json: dict | list) -> dict:
     if isinstance(response_json, list) and len(response_json) > 0:
         return response_json[0]
 
-    raise AssertionError(f"Statistic response has unexpected structure: {response_json}")
+    raise AssertionError(
+        f"Statistic response has unexpected structure: {response_json}"
+    )
 
 
 def extract_created_item_id(create_response_json: dict) -> str:
@@ -93,7 +99,9 @@ def test_get_item_by_id_returns_created_item(api_client, item_payload: dict) -> 
     assert Item["statistics"]["contacts"] == item_payload["statistics"]["contacts"]
 
 
-def test_get_items_by_seller_id_contains_created_item(api_client, item_payload: dict) -> None:
+def test_get_items_by_seller_id_contains_created_item(
+    api_client, item_payload: dict
+) -> None:
     create_response = api_client.create_item(item_payload)
 
     assert create_response.status_code == 200, create_response.text
@@ -122,7 +130,9 @@ def test_get_items_by_seller_id_contains_created_item(api_client, item_payload: 
     assert Item["price"] == item_payload["price"]
 
 
-def test_get_statistic_by_item_id_returns_created_statistics(api_client, item_payload: dict) -> None:
+def test_get_statistic_by_item_id_returns_created_statistics(
+    api_client, item_payload: dict
+) -> None:
     create_response = api_client.create_item(item_payload)
 
     assert create_response.status_code == 200, create_response.text
@@ -146,7 +156,9 @@ def test_get_statistic_by_item_id_returns_created_statistics(api_client, item_pa
     assert Statistic["contacts"] == item_payload["statistics"]["contacts"]
 
 
-def test_create_get_by_id_get_by_seller_id_get_statistic_e2e(api_client, item_payload: dict) -> None:
+def test_create_get_by_id_get_by_seller_id_get_statistic_e2e(
+    api_client, item_payload: dict
+) -> None:
     start_time = time.perf_counter()
 
     create_response = api_client.create_item(item_payload)
