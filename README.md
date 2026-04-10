@@ -55,7 +55,7 @@
 ## Установка зависимостей
 
 ```
-git clone https://github.com/the-worst-student/QA-trainee-assignment-API-tests.git
+git clone git@github.com:the-worst-student/QA-trainee-assignment-API-tests.git
 cd QA-trainee-assignment-API-tests
 python3 -m venv venv
 source venv/bin/activate
